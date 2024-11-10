@@ -1,5 +1,5 @@
 import React from "react";
-import {Routes, Route} from "react-router-dom"
+import { Routes, Route } from "react-router-dom";
 import NavItem from "./components/NavBar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -13,7 +13,6 @@ import Privacy from "./pages/privacy/Privacy";
 import TermsConditions from "./pages/terms_condition/TermsCodition";
 
 function App() {
-
   return (
     <div>
       <NavBar />
