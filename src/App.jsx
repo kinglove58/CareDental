@@ -11,6 +11,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import ContactUs from "./pages/ContactUs";
 import Privacy from "./pages/privacy/Privacy";
 import TermsConditions from "./pages/terms_condition/TermsCodition";
+import Survey from "./components/Survey";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/privacy_policy" element={<Privacy />} />
         <Route path="/terms_condition" element={<TermsConditions />} />
+        <Route path="/survey" element={<Survey />} />
       </Routes>
       <ScrollToTop />
       <Footer />
