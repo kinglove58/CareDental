@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import logo from "/images/logo/care_dental_logo.png"
+import React from "react";
+import { Link } from "react-router-dom";
+import logo from "/images/logo/care_dental_logo.png";
 
 const Footer = () => {
 
@@ -20,4 +20,4 @@ const Footer = () => {
     )
 }
 
-export default Footer
+export default Footer;
