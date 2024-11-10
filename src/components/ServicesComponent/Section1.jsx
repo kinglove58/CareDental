@@ -3,12 +3,12 @@ import saving_1 from "/images/saving/saving1.png";
 
 const Section1 = () => {
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center w-full my-8 px-4 md:px-24 lg:px-36 gap-12 md:gap-3">
+    <div className="flex flex-col md:flex-row items-center justify-center w-full md:py-12 lg:py-16 py-8 px-4 md:px-24 lg:px-36 gap-12 md:gap-3 bg-gradient-to-b from-gray-300 to-gray-100">
       <div className="md:w-1/2 flex justify-center">
         <img
           src={saving_1}
           alt="Benefit 1"
-          className="w-[300px] h-[300px] md:w-[400px] md:h-[400px] object-cover"
+          className="w-[300px] h-[300px] md:w-[400px] md:h-[400px] object-contain"
         />
       </div>
       <div className="md:w-1/2 space-y-7">

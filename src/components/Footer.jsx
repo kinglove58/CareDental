@@ -14,7 +14,7 @@ const Footer = () => {
         </li>
         <li>
           <Link to={"/services"} className="hover:underline">
-            OUR SERVICES
+            SAVING
           </Link>
         </li>
         <li>
