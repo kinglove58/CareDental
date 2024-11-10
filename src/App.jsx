@@ -9,6 +9,8 @@ import Services from "./pages/Services";
 import Join from "./pages/Join";
 import ScrollToTop from "./components/ScrollToTop";
 import ContactUs from "./pages/ContactUs";
+import Privacy from "./pages/privacy/Privacy";
+import TermsConditions from "./pages/terms_condition/TermsCodition";
 
 function App() {
 
@@ -20,6 +22,8 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/join" element={<Join />} />
         <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/privacy_policy" element={<Privacy />} />
+        <Route path="/terms_condition" element={<TermsConditions />} />
       </Routes>
       <ScrollToTop />
       <Footer />

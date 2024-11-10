@@ -12,8 +12,8 @@ const Footer = () => {
                 <li><Link to={"/services"} className='hover:underline'>OUR SERVICES</Link></li>
                 <li><Link to={"/join"} className='hover:underline'>JOIN/RENEW</Link></li>
                 <li><Link to={"/contactus"} className='hover:underline'>CONTACT US</Link></li>
-                <li><Link className='hover:underline'>TERMS & CONDITIONS</Link></li>
-                <li><Link className='hover:underline'>PRIVACY POLICY</Link></li>
+                <li><Link to={"/terms_condition"} className='hover:underline'>TERMS & CONDITIONS</Link></li>
+                <li><Link to={"/privacy_policy"} className='hover:underline'>PRIVACY POLICY</Link></li>
             </ul>
         </div>
     )
