@@ -13,6 +13,7 @@ import Privacy from "./pages/privacy/Privacy";
 import TermsConditions from "./pages/terms_condition/TermsCodition";
 import Survey from "./components/Survey";
 import ScrollUpward from "./components/ScrollUpward";
+import AnnapolisDCSurvey from "./components/AnnapolisDCSurvey";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/privacy_policy" element={<Privacy />} />
         <Route path="/terms_condition" element={<TermsConditions />} />
         <Route path="/survey" element={<Survey />} />
+        <Route path="/annapolicfeedback" element={<AnnapolisDCSurvey />} />
       </Routes>
       <ScrollToTop />
       <Footer />
