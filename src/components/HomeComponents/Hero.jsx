@@ -61,9 +61,9 @@ const Hero = () => {
               alt={item.image.substring(15, 30)}
               className="w-full h-auto"
             />
-            <div className="absolute top-1/2 left-14 sm:left-32 transform -translate-y-1/2 text-white max-w-md z-10">
+            <div className="absolute top-1/2 left-2 sm:left-20 transform -translate-y-1/2 text-white lg:max-w-md md:max-w-sm z-10">
               <p className="text-sm sm:text-xl md:text-2xl">{item.title}</p>
-              <h2 className="text-lg sm:text-2xl md:text-4xl font-semibold sm:mb-2 md:mb-4">
+              <h2 className="text-md sm:text-2xl max-w-[14rem] md:max-w-md md:text-4xl font-semibold sm:mb-2 md:mb-4">
                 {item.text}
               </h2>
               <button
@@ -77,8 +77,8 @@ const Hero = () => {
         ))}
       </div>
       {showPopup && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-20 bg-black bg-transparent/50">
-          <div className="w-[80%] h-[80%] bg-black flex flex-col md:flex-row relative">
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-20 bg-blue-800 bg-transparent/50">
+          <div className="w-[80%] h-[80%] bg-blue-900 flex flex-col md:flex-row relative">
             <RiCloseLine
               onClick={handlePopup}
               className="absolute text-white right-4 top-4 cursor-pointer"

@@ -32,7 +32,7 @@ const NavItem = () => {
             </li>
             <li>
               <NavLink
-                to="/services"
+                to="/saving"
                 className={({ isActive }) =>
                   `hover:text-blue-800 transition duration-500 ${
                     isActive ? "underline text-blue-800" : ""
@@ -102,7 +102,7 @@ const NavItem = () => {
             </li>
             <li className="flex text-center">
               <NavLink
-                to="/services"
+                to="/saving"
                 onClick={() => setShowMenu(false)}
                 className={({ isActive }) =>
                   `hover:text-blue-800 transition duration-500 w-full py-3 border-b ${
@@ -110,7 +110,7 @@ const NavItem = () => {
                   }`
                 }
               >
-                Our Services
+                Savings
               </NavLink>
             </li>
             <li className="flex text-center">

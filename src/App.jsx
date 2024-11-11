@@ -12,14 +12,16 @@ import ContactUs from "./pages/ContactUs";
 import Privacy from "./pages/privacy/Privacy";
 import TermsConditions from "./pages/terms_condition/TermsCodition";
 import Survey from "./components/Survey";
+import ScrollUpward from "./components/ScrollUpward";
 
 function App() {
   return (
     <div>
+      <ScrollUpward />
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/services" element={<Saving />} />
+        <Route path="/saving" element={<Saving />} />
         <Route path="/join" element={<Join />} />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/privacy_policy" element={<Privacy />} />
