@@ -6,6 +6,7 @@ import Hero from "../components/HomeComponents/Hero";
 import gurant from "../../public/images/logo/gurantee.png";
 import ScrollAnimationWrapper from "../components/ScrollAnimation";
 
+
 const Services = () => {
   return (
     <div className="bg-gray-200">
