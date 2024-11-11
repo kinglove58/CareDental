@@ -4,6 +4,7 @@ import emailjs from "emailjs-com";
 const ADCSurvey2 = () => {
   const [formData, setFormData] = useState({
     fullName: "",
+    email: "",
     overallExperience: "",
     treatmentSatisfaction: "",
     staffSupport: "",
@@ -55,6 +56,17 @@ const ADCSurvey2 = () => {
             type="text"
             name="fullName"
             value={formData.fullName}
+            onChange={handleChange}
+            className="w-full p-2 border border-gray-300 rounded"
+            required
+          />
+        </div>
+        <div>
+          <label className="block font-semibold">Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
             onChange={handleChange}
             className="w-full p-2 border border-gray-300 rounded"
             required

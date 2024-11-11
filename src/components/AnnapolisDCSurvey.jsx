@@ -4,6 +4,7 @@ import emailjs from "emailjs-com";
 const AnnapolisDCSurvey = () => {
   const [formData, setFormData] = useState({
     fullName: "",
+    email: "",
     gender: "",
     age: "",
     visitFrequency: "",
@@ -35,7 +36,7 @@ const AnnapolisDCSurvey = () => {
         "service_g4sarxm", // Replace with your actual service ID
         "template_ory182p", // Replace with your actual template ID
         formData,
-        "5-NXkjBkADbnPGUMP" // Replace with your actual public key
+        { publicKey: "5-NXkjBkADbnPGUMP" }
       )
       .then(
         (result) => {
@@ -63,6 +64,17 @@ const AnnapolisDCSurvey = () => {
             type="text"
             name="fullName"
             value={formData.fullName}
+            onChange={handleChange}
+            className="w-full p-2 border border-gray-300 rounded"
+            required
+          />
+        </div>
+        <div>
+          <label className="block font-semibold">Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
             onChange={handleChange}
             className="w-full p-2 border border-gray-300 rounded"
             required
