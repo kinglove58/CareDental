@@ -4,7 +4,6 @@ import { FaAngleUp } from 'react-icons/fa';
 const ScrollToTop = () => {
     const [isVisible, setIsVisible] = useState(false);
 
-    // Show the button when the user scrolls down
     const toggleVisibility = () => {
         if (window.scrollY > 300) {
             setIsVisible(true);
@@ -13,7 +12,6 @@ const ScrollToTop = () => {
         }
     };
 
-    // Scroll to top smoothly
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
@@ -34,7 +32,6 @@ const ScrollToTop = () => {
                     className="h-[40px] w-[40px] rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition transform hover:scale-105 flex items-center justify-center"
                     aria-label="Scroll to top"
                 >
-                    {/* ↑ */}
                     <FaAngleUp size={20} />
                 </button>
             )}

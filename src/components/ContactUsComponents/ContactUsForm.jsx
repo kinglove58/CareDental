@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from "axios"
 
 const ContactUsForm = () => {
     const [formData, setFormData] = useState({
@@ -17,10 +18,51 @@ const ContactUsForm = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Here you can handle the form submission (e.g., send the data to an API or log it)
-        console.log('Form Data:', formData);
+
+        const modifiedMessage = `
+            Section (Are you a): ${formData.section}
+            Email: ${formData.email}
+            Phone Number: ${formData.number}
+            \n
+            User's Message: 
+            \n
+            ${formData.message}
+            <h2 style="font-size: 1.5rem">Feedback Survey Submission</h2>
+            <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>Full Name:</h3>
+            <p style='color: gray; font-size: 1.1rem'>${formData.name}</p>
+            <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>Email:</h3>
+            <p style='color: gray; font-size: 1.1rem'>${formData.email}</p>
+            <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>Phone Number:</h3>
+            <p style='color: gray; font-size: 1.1rem'>${formData.number}</p>
+            <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>Are you a:</h3> 
+            <p style='color: gray; font-size: 1.1rem'>${formData.section}</p>
+            <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>Questions/Concerns:</h3> 
+            <p style='color: gray; font-size: 1.1rem'>${formData.message}</p>
+        `;
+
+        try {
+            const dataToSend = {
+                name: formData.name,
+                email: formData.email,
+                message: modifiedMessage // message contains section and number
+            };
+
+            await axios.post('http://localhost:5000/send-email', dataToSend);
+            alert("Message sent successfully!");
+
+            setFormData({
+                name: '',
+                number: '',
+                email: '',
+                section: '',
+                message: ''
+            });
+        } catch (error) {
+            console.error("Error sending message:", error);
+            alert("Failed to send message.");
+        }
     };
 
     return (

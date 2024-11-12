@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import emailjs from "emailjs-com";
+import axios from "axios"
 
 const AnnapolisDCSurvey = () => {
   const [formData, setFormData] = useState({
@@ -28,26 +28,89 @@ const AnnapolisDCSurvey = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    emailjs
-      .send(
-        "service_g4sarxm", // Replace with your actual service ID
-        "template_ory182p", // Replace with your actual template ID
-        formData,
-        { publicKey: "5-NXkjBkADbnPGUMP" }
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          alert("Feedback sent successfully!");
-        },
-        (error) => {
-          console.error(error.text);
-          alert("Failed to send feedback. Please try again.");
+    const modifiedMessage = `
+        <h2 style="font-size: 1.5rem">Feedback Survey Submission</h2>
+        <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>Full Name:</h3>
+        <p style='color: gray; font-size: 1.1rem'>${formData.fullName}</p>
+        <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>Email:</h3>
+        <p style='color: gray; font-size: 1.1rem'>${formData.email}</p>
+        <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>What is your gender?</h3>
+        <p style='color: gray; font-size: 1.1rem'>${formData.gender}</p>
+        <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>What is your age?</h3> 
+        <p style='color: gray; font-size: 1.1rem'>${formData.age}</p>
+        <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>How often do you visit the dentist?</h3> 
+        <p style='color: gray; font-size: 1.1rem'>${formData.visitFrequency}</p>
+        <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>How easy was it to book your appointment?</h3> 
+        <p style='color: gray; font-size: 1.1rem'>${formData.bookingEase}</p>
+        <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>Did the receptionist greet you in a friendly manner when you arrived for your appointment?</h3> 
+        <p style='color: gray; font-size: 1.1rem'>${formData.receptionistGreeting}</p>
+        <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>Was the clinic clean and well-maintained</h3>?
+        <p style='color: gray; font-size: 1.1rem'>${formData.clinicCleanliness}</p>
+        <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>Was the waiting area comfortable and pleasant?</h3> 
+        <p style='color: gray; font-size: 1.1rem'>${formData.waitingAreaComfort}</p>
+        <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>How satisfied were you with the level of care you received from your dentist?</h3> 
+        <p style='color: gray; font-size: 1.1rem'>${formData.careSatisfaction}</p>
+        <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>Did the dentist explain the procedures to you in a clear and understandable manner?</h3> 
+        <p style='color: gray; font-size: 1.1rem'>${formData.dentistExplanation}</p>
+        <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>Did the manager or the treatment coordinator explain the procedures to you in a clear and understandable manner?</h3> 
+        <p style='color: gray; font-size: 1.1rem'>${formData.managerExplanation}</p>
+        <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>Did the dental assistant greet you in a friendly manner?</h3> 
+        <p style='color: gray; font-size: 1.1rem'>${formData.assistantGreeting}</p>
+        <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>How satisfied were you with the results of your dental treatment?</h3> 
+        <p style='color: gray; font-size: 1.1rem'>${formData.treatmentSatisfaction}</p>
+        <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>Did the dentist or dental hygienist give you tips on how to better care for your teeth and gums?</h3> 
+        <p style='color: gray; font-size: 1.1rem'>${formData.careTips}</p>
+        <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>How likely are you to recommend our clinic to family or friends?</h3> 
+        <p style='color: gray; font-size: 1.1rem'>${formData.recommendLikelihood}</p>
+        <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>Overall, how satisfied are you with your experience at our clinic?</h3> 
+        <p style='color: gray; font-size: 1.1rem'>${formData.overallSatisfaction}</p>
+        <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>Please provide any additional comments or suggestions:</h3> 
+        <p style='color: gray; font-size: 1.1rem'>${formData.additionalComments}</p>
+    `;
+
+
+    try {
+      const dataToSend = {
+        name: formData.fullName,
+        email: formData.email,
+        message: modifiedMessage
+      };
+
+      await axios.post('http://localhost:5000/send-survey', dataToSend, {
+        headers: {
+          'Content-Type': 'application/json',
         }
-      );
+      });
+      alert("Message sent successfully!");
+
+      setFormData({
+        fullName: "",
+        email: "",
+        gender: "",
+        age: "",
+        visitFrequency: "",
+        bookingEase: "",
+        receptionistGreeting: "",
+        clinicCleanliness: "",
+        waitingAreaComfort: "",
+        careSatisfaction: "",
+        dentistExplanation: "",
+        managerExplanation: "",
+        assistantGreeting: "",
+        treatmentSatisfaction: "",
+        careTips: "",
+        recommendLikelihood: "",
+        overallSatisfaction: "",
+        additionalComments: "",
+      });
+    } catch (error) {
+      console.error("Error sending message:", error);
+      alert("Failed to send message.");
+    }
+
   };
 
   return (
@@ -81,7 +144,7 @@ const AnnapolisDCSurvey = () => {
           />
         </div>
         <div>
-          <label className="block font-semibold">1. What is your gender?</label>
+          <label className="block font-semibold">What is your gender?</label>
           <select
             name="gender"
             value={formData.gender}
@@ -95,7 +158,7 @@ const AnnapolisDCSurvey = () => {
           </select>
         </div>
         <div>
-          <label className="block font-semibold">2. What is your age?</label>
+          <label className="block font-semibold">What is your age?</label>
           <select
             name="age"
             value={formData.age}
@@ -115,7 +178,7 @@ const AnnapolisDCSurvey = () => {
         </div>
         <div>
           <label className="block font-semibold">
-            3. How often do you visit the dentist?
+            How often do you visit the dentist?
           </label>
           <select
             name="visitFrequency"
@@ -136,7 +199,7 @@ const AnnapolisDCSurvey = () => {
         </div>
         <div>
           <label className="block font-semibold">
-            4. How easy was it to book your appointment?
+            How easy was it to book your appointment?
           </label>
           <select
             name="bookingEase"
@@ -155,7 +218,7 @@ const AnnapolisDCSurvey = () => {
         </div>
         <div>
           <label className="block font-semibold">
-            5. Did the receptionist greet you in a friendly manner when you
+            Did the receptionist greet you in a friendly manner when you
             arrived for your appointment?
           </label>
           <select
@@ -179,7 +242,7 @@ const AnnapolisDCSurvey = () => {
         </div>
         <div>
           <label className="block font-semibold">
-            6. Was the clinic clean and well-maintained?
+            Was the clinic clean and well-maintained?
           </label>
           <select
             name="clinicCleanliness"
@@ -206,7 +269,7 @@ const AnnapolisDCSurvey = () => {
         </div>
         <div>
           <label className="block font-semibold">
-            7. Was the waiting area comfortable and pleasant?
+            Was the waiting area comfortable and pleasant?
           </label>
           <select
             name="waitingAreaComfort"
@@ -233,7 +296,7 @@ const AnnapolisDCSurvey = () => {
         </div>
         <div>
           <label className="block font-semibold">
-            8. How satisfied were you with the level of care you received from
+            How satisfied were you with the level of care you received from
             your dentist?
           </label>
           <select
@@ -253,7 +316,7 @@ const AnnapolisDCSurvey = () => {
         </div>
         <div>
           <label className="block font-semibold">
-            9a. Did the dentist explain the procedures to you in a clear and
+            Did the dentist explain the procedures to you in a clear and
             understandable manner?
           </label>
           <select
@@ -281,7 +344,7 @@ const AnnapolisDCSurvey = () => {
         </div>
         <div>
           <label className="block font-semibold">
-            9b. Did the manager or the treatment coordinator explain the
+            Did the manager or the treatment coordinator explain the
             procedures to you in a clear and understandable manner?
           </label>
           <select
@@ -309,7 +372,7 @@ const AnnapolisDCSurvey = () => {
         </div>
         <div>
           <label className="block font-semibold">
-            9c. Did the dental assistant greet you in a friendly manner?
+            Did the dental assistant greet you in a friendly manner?
           </label>
           <select
             name="assistantGreeting"
@@ -332,7 +395,7 @@ const AnnapolisDCSurvey = () => {
         </div>
         <div>
           <label className="block font-semibold">
-            10. How satisfied were you with the results of your dental
+            How satisfied were you with the results of your dental
             treatment?
           </label>
           <select
@@ -352,7 +415,7 @@ const AnnapolisDCSurvey = () => {
         </div>
         <div>
           <label className="block font-semibold">
-            11. Did the dentist or dental hygienist give you tips on how to
+            Did the dentist or dental hygienist give you tips on how to
             better care for your teeth and gums?
           </label>
           <select
@@ -380,7 +443,7 @@ const AnnapolisDCSurvey = () => {
         </div>
         <div>
           <label className="block font-semibold">
-            12. How likely are you to recommend our clinic to family or friends?
+            How likely are you to recommend our clinic to family or friends?
           </label>
           <select
             name="recommendLikelihood"
@@ -399,7 +462,7 @@ const AnnapolisDCSurvey = () => {
         </div>
         <div>
           <label className="block font-semibold">
-            13. Overall, how satisfied are you with your experience at our
+            Overall, how satisfied are you with your experience at our
             clinic?
           </label>
           <select

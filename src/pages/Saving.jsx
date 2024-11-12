@@ -3,7 +3,7 @@ import Section1 from "../components/ServicesComponent/Section1";
 import Section2 from "../components/ServicesComponent/Section2";
 import { Link } from "react-router-dom";
 import Hero from "../components/HomeComponents/Hero";
-import gurant from "../../public/images/logo/gurantee.png";
+import gurant from "/images/logo/gurantee.png";
 import ScrollAnimationWrapper from "../components/ScrollAnimation";
 
 const Services = () => {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import emailjs from "emailjs-com";
+import axios from 'axios'
 
 const ADCSurvey2 = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +10,7 @@ const ADCSurvey2 = () => {
     staffSupport: "",
     careSatisfaction: "",
     managerInteraction: "",
-    serviceTimeliness: "",
+    serviceTimelines: "",
     followUpCall: "",
     additionalComments: "",
   });
@@ -20,26 +20,73 @@ const ADCSurvey2 = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    emailjs
-      .send(
-        "service_g4sarxm", // Replace with your actual service ID
-        "template_ory182p", // Replace with your actual template ID
-        formData,
-        "5-NXkjBkADbnPGUMP" // Replace with your actual public key
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          alert("Feedback sent successfully!");
-        },
-        (error) => {
-          console.error(error.text);
-          alert("Failed to send feedback. Please try again.");
-        }
-      );
+    // const modifiedMessage = `
+    //   overall Experience: ${formData.overallExperience}
+    //   treatmentSatisfaction: ${formData.treatmentSatisfaction}
+    //   staffSupport: ${formData.staffSupport}
+    //   careSatisfaction: ${formData.careSatisfaction}
+    //   managerInteraction: ${formData.managerInteraction}
+    //   serviceTimelines: ${formData.serviceTimelines}
+    //   followUpCall: ${formData.followUpCall}
+    //   additionalComments: 
+    //   ${formData.additionalComments}
+    // `;
+
+    const modifiedMessage = `
+      <h2 style="font-size: 1.5rem">Exit Survey Submission</h2>
+      <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>Full Name:</h3>
+      <p style='color: gray; font-size: 1.1rem'>${formData.fullName}</p>
+      <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>Email:</h3>
+      <p style='color: gray; font-size: 1.1rem'>${formData.email}</p>
+      <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>How would you rate your overall customer experience?</h3>
+      <p style='color: gray; font-size: 1.1rem'>${formData.overallExperience}</p>
+      <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>How satisfied were you with your dental treatment?</h3> 
+      <p style='color: gray; font-size: 1.1rem'>${formData.treatmentSatisfaction}</p>
+      <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>How satisfied were you with staff support?</h3> 
+      <p style='color: gray; font-size: 1.1rem'>${formData.staffSupport}</p>
+      <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>How satisfied were you with the level of care you received from your dentist?</h3> 
+      <p style='color: gray; font-size: 1.1rem'>${formData.careSatisfaction}</p>
+      <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>How satisfied were you with your interaction with our office manager?</h3> 
+      <p style='color: gray; font-size: 1.1rem'>${formData.managerInteraction}</p>
+      <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>How satisfied were you with the timeliness of our services?</h3>?
+      <p style='color: gray; font-size: 1.1rem'>${formData.serviceTimelines}</p>
+      <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>Would you want a call to follow up on your survey response?</h3> 
+      <p style='color: gray; font-size: 1.1rem'>${formData.followUpCall}</p>
+      <h3 style='font-weight: bold; color: blue; font-size: 1.2rem'>Please provide any additional comments or suggestions</h3> 
+      <p style='color: gray; font-size: 1.1rem'>${formData.additionalComments}</p>
+    `;
+
+    try {
+      const dataToSend = {
+        name: formData.fullName,
+        email: formData.email,
+        message: modifiedMessage
+      };
+
+      await axios.post('http://localhost:5000/exit-survey', dataToSend);
+      alert("Message sent successfully!");
+
+      setFormData({
+        fullName: "",
+        email: "",
+        overallExperience: "",
+        treatmentSatisfaction: "",
+        staffSupport: "",
+        careSatisfaction: "",
+        managerInteraction: "",
+        serviceTimelines: "",
+        followUpCall: "",
+        additionalComments: "",
+      });
+    } catch (error) {
+      console.error("Error sending message:", error);
+      alert("Failed to send message.");
+    }
+
+
   };
 
   return (
@@ -174,8 +221,8 @@ const ADCSurvey2 = () => {
             How satisfied were you with the timeliness of our services?
           </label>
           <select
-            name="serviceTimeliness"
-            value={formData.serviceTimeliness}
+            name="serviceTimelines"
+            value={formData.serviceTimelines}
             onChange={handleChange}
             className="w-full p-2 border border-gray-300 rounded"
             required

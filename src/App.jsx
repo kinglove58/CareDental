@@ -29,8 +29,8 @@ function App() {
         <Route path="/privacy_policy" element={<Privacy />} />
         <Route path="/terms_condition" element={<TermsConditions />} />
         <Route path="/survey" element={<Survey />} />
-        <Route path="/annapolicfeedback" element={<AnnapolisDCSurvey />} />
-        <Route path="/annapolissurvey" element={<ADCSurvey2 />} />
+        <Route path="/policyfeedback" element={<AnnapolisDCSurvey />} />
+        <Route path="/exitsurvey" element={<ADCSurvey2 />} />
       </Routes>
       <ScrollToTop />
       <Footer />

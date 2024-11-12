@@ -38,7 +38,7 @@ const Footer = () => {
           </Link>
         </li>
         <li>
-          <Link to="/annapolicfeedback" className="hover:underline">
+          <Link to="/policyfeedback" className="hover:underline">
             GIVE FEEDBACK
           </Link>
         </li>

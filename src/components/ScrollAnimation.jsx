@@ -1,4 +1,3 @@
-// src/components/ScrollAnimationWrapper.jsx
 import { motion } from "framer-motion";
 
 const ScrollAnimationWrapper = ({ children }) => {
