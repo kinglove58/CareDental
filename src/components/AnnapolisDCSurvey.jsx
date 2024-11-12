@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios"
+import axios from "axios";
+import { FaSpinner } from "react-icons/fa";
 
 const AnnapolisDCSurvey = () => {
+  const [loading, setLoading] = useState(false);
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -30,6 +33,7 @@ const AnnapolisDCSurvey = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const modifiedMessage = `
         <h2 style="font-size: 1.5rem">Feedback Survey Submission</h2>
@@ -71,18 +75,17 @@ const AnnapolisDCSurvey = () => {
         <p style='color: gray; font-size: 1.1rem'>${formData.additionalComments}</p>
     `;
 
-
     try {
       const dataToSend = {
         name: formData.fullName,
         email: formData.email,
-        message: modifiedMessage
+        message: modifiedMessage,
       };
 
-      await axios.post('http://localhost:5000/send-survey', dataToSend, {
+      await axios.post("http://localhost:5000/send-survey", dataToSend, {
         headers: {
-          'Content-Type': 'application/json',
-        }
+          "Content-Type": "application/json",
+        },
       });
       alert("Message sent successfully!");
 
@@ -109,8 +112,9 @@ const AnnapolisDCSurvey = () => {
     } catch (error) {
       console.error("Error sending message:", error);
       alert("Failed to send message.");
+    } finally {
+      setLoading(false);
     }
-
   };
 
   return (
@@ -218,8 +222,8 @@ const AnnapolisDCSurvey = () => {
         </div>
         <div>
           <label className="block font-semibold">
-            Did the receptionist greet you in a friendly manner when you
-            arrived for your appointment?
+            Did the receptionist greet you in a friendly manner when you arrived
+            for your appointment?
           </label>
           <select
             name="receptionistGreeting"
@@ -296,8 +300,8 @@ const AnnapolisDCSurvey = () => {
         </div>
         <div>
           <label className="block font-semibold">
-            How satisfied were you with the level of care you received from
-            your dentist?
+            How satisfied were you with the level of care you received from your
+            dentist?
           </label>
           <select
             name="careSatisfaction"
@@ -344,8 +348,8 @@ const AnnapolisDCSurvey = () => {
         </div>
         <div>
           <label className="block font-semibold">
-            Did the manager or the treatment coordinator explain the
-            procedures to you in a clear and understandable manner?
+            Did the manager or the treatment coordinator explain the procedures
+            to you in a clear and understandable manner?
           </label>
           <select
             name="managerExplanation"
@@ -395,8 +399,7 @@ const AnnapolisDCSurvey = () => {
         </div>
         <div>
           <label className="block font-semibold">
-            How satisfied were you with the results of your dental
-            treatment?
+            How satisfied were you with the results of your dental treatment?
           </label>
           <select
             name="treatmentSatisfaction"
@@ -415,8 +418,8 @@ const AnnapolisDCSurvey = () => {
         </div>
         <div>
           <label className="block font-semibold">
-            Did the dentist or dental hygienist give you tips on how to
-            better care for your teeth and gums?
+            Did the dentist or dental hygienist give you tips on how to better
+            care for your teeth and gums?
           </label>
           <select
             name="careTips"
@@ -462,8 +465,7 @@ const AnnapolisDCSurvey = () => {
         </div>
         <div>
           <label className="block font-semibold">
-            Overall, how satisfied are you with your experience at our
-            clinic?
+            Overall, how satisfied are you with your experience at our clinic?
           </label>
           <select
             name="overallSatisfaction"
@@ -493,9 +495,9 @@ const AnnapolisDCSurvey = () => {
         </div>
         <button
           type="submit"
-          className="w-full py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700 transition duration-300"
+          className="w-full py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700 transition duration-300 flex items-center justify-center"
         >
-          Submit
+          {loading ? <FaSpinner className="animate-spin mr-2" /> : "Submit"}
         </button>
       </form>
     </div>

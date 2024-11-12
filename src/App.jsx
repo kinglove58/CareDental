@@ -1,20 +1,18 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import NavItem from "./components/NavBar";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import FloatingLabelInput from "./components/FloatingLabelInput";
+import ScrollUpward from "./components/ScrollUpward";
 import NavBar from "./components/NavBar";
+import Home from "./pages/Home";
 import Saving from "./pages/Saving";
 import Join from "./pages/Join";
-import ScrollToTop from "./components/ScrollToTop";
 import ContactUs from "./pages/ContactUs";
-import Privacy from "./pages/privacy/Privacy";
+import Privacy from "./pages/Privacy/Privacy";
 import TermsConditions from "./pages/terms_condition/TermsCodition";
-import Survey from "./components/Survey";
-import ScrollUpward from "./components/ScrollUpward";
 import AnnapolisDCSurvey from "./components/AnnapolisDCSurvey";
 import ADCSurvey2 from "./components/ADCSurvey2";
+import ScrollToTop from "./components/ScrollToTop";
+import Footer from "./components/Footer";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -28,9 +26,9 @@ function App() {
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/privacy_policy" element={<Privacy />} />
         <Route path="/terms_condition" element={<TermsConditions />} />
-        <Route path="/survey" element={<Survey />} />
-        <Route path="/policyfeedback" element={<AnnapolisDCSurvey />} />
-        <Route path="/exitsurvey" element={<ADCSurvey2 />} />
+        <Route path="/customerfeedback" element={<AnnapolisDCSurvey />} />
+        <Route path="/exitcustomer" element={<ADCSurvey2 />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <ScrollToTop />
       <Footer />

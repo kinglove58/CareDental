@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import axios from 'axios'
+import axios from "axios";
+import { FaSpinner } from "react-icons/fa";
 
 const ADCSurvey2 = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,8 @@ const ADCSurvey2 = () => {
     additionalComments: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -22,18 +25,7 @@ const ADCSurvey2 = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // const modifiedMessage = `
-    //   overall Experience: ${formData.overallExperience}
-    //   treatmentSatisfaction: ${formData.treatmentSatisfaction}
-    //   staffSupport: ${formData.staffSupport}
-    //   careSatisfaction: ${formData.careSatisfaction}
-    //   managerInteraction: ${formData.managerInteraction}
-    //   serviceTimelines: ${formData.serviceTimelines}
-    //   followUpCall: ${formData.followUpCall}
-    //   additionalComments: 
-    //   ${formData.additionalComments}
-    // `;
+    setLoading(true);
 
     const modifiedMessage = `
       <h2 style="font-size: 1.5rem">Exit Survey Submission</h2>
@@ -63,10 +55,10 @@ const ADCSurvey2 = () => {
       const dataToSend = {
         name: formData.fullName,
         email: formData.email,
-        message: modifiedMessage
+        message: modifiedMessage,
       };
 
-      await axios.post('http://localhost:5000/exit-survey', dataToSend);
+      await axios.post("http://localhost:5000/exit-survey", dataToSend);
       alert("Message sent successfully!");
 
       setFormData({
@@ -84,9 +76,9 @@ const ADCSurvey2 = () => {
     } catch (error) {
       console.error("Error sending message:", error);
       alert("Failed to send message.");
+    } finally {
+      setLoading(false);
     }
-
-
   };
 
   return (
@@ -265,9 +257,9 @@ const ADCSurvey2 = () => {
         </div>
         <button
           type="submit"
-          className="w-full py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700 transition duration-300"
+          className="w-full py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700 transition duration-300 flex items-center justify-center"
         >
-          Submit
+          {loading ? <FaSpinner className="animate-spin mr-2" /> : "Submit"}
         </button>
       </form>
     </div>

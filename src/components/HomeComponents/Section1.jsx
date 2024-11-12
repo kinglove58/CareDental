@@ -3,7 +3,7 @@ import benefit_1 from "/images/benefit/benefit1.png";
 
 const Section1 = () => {
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center w-full my-8 px-4 md:px-24 lg:px-36 gap-12 md:gap-3 bg-gradient-to-b from-gray-300 to-gray-100 mb-4">
+    <div className="flex flex-col md:flex-row items-center justify-center w-full py-8 px-4 md:px-24 lg:px-36 gap-12 md:gap-3 bg-gradient-to-b from-gray-300 via-gray-100 to-gray-50 pb-4">
       <div className="md:w-1/2 flex justify-center">
         <img
           src={benefit_1}

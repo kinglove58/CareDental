@@ -6,7 +6,7 @@ import family from "/images/saving/family.png";
 const Subscription = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div className="">
+      <div className="hover:scale-105 transition-transform duration-300 shadow-sm">
         <div className="rounded-t-md p-3 bg-[#008080] flex flex-col items-center">
           <img src={individual} alt="individual plan" />
           <a href="https://collectcheckout.com/r/0p8m1rw5qmz0h0fzjze5u3rc31jpgq">
@@ -25,9 +25,9 @@ const Subscription = () => {
           </p>
         </div>
       </div>
-      <div className="">
+      <div className="hover:scale-105 transition-transform duration-300 shadow-sm">
         <div className="rounded-t-md p-3 bg-[#FF6F61] flex flex-col items-center">
-          <img src={couple} alt="individual plan" />
+          <img src={couple} alt="couple plan" />
           <a href="https://collectcheckout.com/r/eiml6me2cv31y9cmcwt0tbi2wyqusv">
             <button className="min-h-[45px] mb-4 py-2 px-4 bg-blue-800 text-white font-semibold rounded-2xl border border-blue-800 hover:bg-white hover:text-blue-800 transition duration-500">
               Join now! Couple Plan
@@ -44,9 +44,9 @@ const Subscription = () => {
           </p>
         </div>
       </div>
-      <div className="">
+      <div className="hover:scale-105 transition-transform duration-300 shadow-sm">
         <div className="rounded-t-md p-3 bg-[#002F6C] flex flex-col items-center">
-          <img src={family} alt="individual plan" />
+          <img src={family} alt="family plan" />
           <a href="https://collectcheckout.com/r/xxjx9nnmbyzz0i6uf372u6i282c0h2">
             <button className="min-h-[45px] mb-4 py-2 px-4 bg-blue-800 text-white font-semibold rounded-2xl border border-blue-800 hover:bg-white hover:text-blue-800 transition duration-500">
               Join now! Family Plan

@@ -37,11 +37,6 @@ const Footer = () => {
             PRIVACY POLICY
           </Link>
         </li>
-        <li>
-          <Link to="/policyfeedback" className="hover:underline">
-            GIVE FEEDBACK
-          </Link>
-        </li>
       </ul>
     </div>
   );

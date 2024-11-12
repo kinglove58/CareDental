@@ -10,7 +10,7 @@ import ScrollAnimationWrapper from "../components/ScrollAnimation";
 
 const Home = () => {
   return (
-    <div className="bg-gray-200">
+    <div className="bg-gradient-to-b from-gray-200 via-blue-50 to-blue-50">
       <ScrollAnimationWrapper>
         <Hero />
       </ScrollAnimationWrapper>
