@@ -13,7 +13,7 @@ const Footer = () => {
           </Link>
         </li>
         <li>
-          <Link to="/services" className="hover:underline">
+          <Link to="/saving" className="hover:underline">
             SAVING
           </Link>
         </li>
