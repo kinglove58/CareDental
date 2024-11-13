@@ -2,7 +2,7 @@ import React from "react";
 import Subscription from "../components/HomeComponents/Subscription";
 import Hero from "../components/HomeComponents/Hero";
 import ScrollAnimationWrapper from "../components/ScrollAnimation";
-import gurant from "/images/logo/gurantee.png";
+import gurant from "/images/logo/gurantee.webp";
 
 const Join = () => {
   return (
