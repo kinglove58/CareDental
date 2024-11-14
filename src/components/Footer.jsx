@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "/images/logo/care_dental_logo.png";
+import logo from "/images/logo/care_dental_logo_white.png";
 
 const Footer = () => {
   return (

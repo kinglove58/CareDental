@@ -10,19 +10,19 @@ const Hero = () => {
 
   const hero_data = [
     {
-      image: "/images/banners/banner_dental_1.webp",
+      image: "/images/banners/banner_dental_1.jpg",
       title: "Care Dental Plan",
       text: "Quality Care Made Affordable, with Savings of Up to 50%",
       action: "Start Saving Now",
     },
     {
-      image: "/images/banners/banner_dental_2.webp",
+      image: "/images/banners/banner_dental_2.jpg",
       title: "Affordable Family Dental Care",
       text: "Up to 50% Off",
       action: "Join Now",
     },
     {
-      image: "/images/banners/banner_dental_3.webp",
+      image: "/images/banners/banner_dental_3.jpg",
       title: "Couples Save Big on",
       text: "Quality Dental Care",
       action: "Enjoy Now",

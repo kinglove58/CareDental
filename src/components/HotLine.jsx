@@ -16,7 +16,7 @@ const HotLine = () => {
         <div className={`${showHotLine && "flex-col"} flex items-center gap-3`}>
           <a href="/">
             <p className="text-[20px] hover:text-blue-800 transition duration-500">
-              <span className="font-semibold">Call us:</span> +234 809 330 0390
+              <span className="font-semibold">Call us:</span> (410) 571-5014
             </p>
           </a>
         </div>
